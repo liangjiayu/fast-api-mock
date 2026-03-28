@@ -33,6 +33,8 @@ const ProductsResponseSchema = z
 const getUserRoute = createRoute({
   method: 'get',
   path: '/api/user',
+  operationId: 'getUser',
+  tags: ['User'],
   responses: {
     200: {
       description: 'User information',
@@ -48,6 +50,8 @@ const getUserRoute = createRoute({
 const getProductsRoute = createRoute({
   method: 'get',
   path: '/api/products',
+  operationId: 'getProducts',
+  tags: ['Products'],
   request: {
     query: z.object({
       page: z.string().optional().default('1'),
