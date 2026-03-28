@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "tsx": "^4.21.0"
+    "@types/swagger-ui-dist": "^3.30.6",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
   }
 }
