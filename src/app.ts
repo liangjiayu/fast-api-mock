@@ -1,9 +1,7 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { swaggerUI } from '@hono/swagger-ui';
-import { GetUserRoute } from './modules/user/user.route';
-import { getUserHandler } from './modules/user/user.handler';
-import { GetProductsRoute } from './modules/product/product.route';
-import { getProductsHandler } from './modules/product/product.handler';
+import { GetUserRoute, getUserHandler } from './routes/user';
+import { GetProductsRoute, getProductsHandler } from './routes/product';
 import { serve } from '@hono/node-server';
 
 const app = new OpenAPIHono();

@@ -1,5 +1,6 @@
-import type { RouteHandler } from '@hono/zod-openapi';
-import type { GetProductsRoute } from './product.route';
+import { createRoute, type RouteHandler } from '@hono/zod-openapi';
+import { PaginationQuerySchema } from '../schemas/common';
+import { ProductListResponseSchema } from '../schemas/product';
 
 const products = [
   { id: 1, name: '无线蓝牙耳机', price: 299.0, description: '高品质无线蓝牙耳机，支持降噪', image: 'https://picsum.photos/seed/product1/200/200' },
@@ -18,6 +19,27 @@ const products = [
   { id: 14, name: '电脑包', price: 179.0, description: '15.6英寸笔记本双肩包', image: 'https://picsum.photos/seed/product14/200/200' },
   { id: 15, name: '屏幕挂灯', price: 219.0, description: '显示器护眼挂灯', image: 'https://picsum.photos/seed/product15/200/200' },
 ];
+
+export const GetProductsRoute = createRoute({
+  method: 'get',
+  path: '/api/products',
+  operationId: 'getProducts',
+  tags: ['Product'],
+  summary: '获取商品列表',
+  request: {
+    query: PaginationQuerySchema,
+  },
+  responses: {
+    200: {
+      description: '商品分页列表',
+      content: {
+        'application/json': {
+          schema: ProductListResponseSchema,
+        },
+      },
+    },
+  },
+});
 
 export const getProductsHandler: RouteHandler<typeof GetProductsRoute> = (c) => {
   const { page: pageStr, pageSize: pageSizeStr } = c.req.valid('query');

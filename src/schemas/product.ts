@@ -1,5 +1,5 @@
 import { z } from '@hono/zod-openapi';
-import { createPaginatedResponse } from '../../common/schema';
+import { createPaginatedResponse } from './common';
 
 export const ProductSchema = z
   .object({
