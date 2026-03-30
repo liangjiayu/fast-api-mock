@@ -1,13 +1,13 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { swaggerUI } from '@hono/swagger-ui';
-import { GetUserRoute, getUserHandler } from './routes/user';
+import { GetCurrentUserRoute, getCurrentUserHandler } from './routes/user';
 import { GetProductsRoute, getProductsHandler } from './routes/product';
 import { serve } from '@hono/node-server';
 
 const app = new OpenAPIHono();
 
 // 注册路由
-app.openapi(GetUserRoute, getUserHandler);
+app.openapi(GetCurrentUserRoute, getCurrentUserHandler);
 app.openapi(GetProductsRoute, getProductsHandler);
 
 // OpenAPI 文档

@@ -1,12 +1,18 @@
 import { z } from '@hono/zod-openapi';
 
-export const UserSchema = z
+export const CurrentUserSchema = z
   .object({
-    id: z.number().openapi({ description: '用户ID', example: 1 }),
-    username: z.string().openapi({ description: '用户名', example: 'johndoe' }),
-    email: z.string().email().openapi({ description: '邮箱', example: 'johndoe@example.com' }),
-    avatar: z.string().url().openapi({ description: '头像', example: 'https://api.dicebear.com/9.x/avataaars/svg?seed=johndoe' }),
-    firstName: z.string().openapi({ description: '名', example: 'John' }),
-    lastName: z.string().openapi({ description: '姓', example: 'Doe' }),
+    name: z.string().openapi({ description: '用户姓名', example: 'Serati Ma' }),
+    avatar: z.string().url().openapi({ description: '头像', example: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png' }),
+    userid: z.string().openapi({ description: '用户ID', example: '00000001' }),
+    email: z.string().email().openapi({ description: '邮箱', example: 'antdesign@alipay.com' }),
+    signature: z.string().openapi({ description: '个性签名', example: '海纳百川，有容乃大' }),
+    title: z.string().openapi({ description: '职位', example: '交互专家' }),
+    group: z.string().openapi({ description: '所属部门', example: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED' }),
+    notifyCount: z.number().openapi({ description: '通知数量', example: 12 }),
+    unreadCount: z.number().openapi({ description: '未读消息数量', example: 11 }),
+    country: z.string().openapi({ description: '国家', example: 'China' }),
+    address: z.string().openapi({ description: '地址', example: '西湖区工专路 77 号' }),
+    phone: z.string().openapi({ description: '联系电话', example: '0752-268888888' }),
   })
-  .openapi('User');
+  .openapi('CurrentUser');

@@ -1,31 +1,37 @@
 import { createRoute, type RouteHandler } from '@hono/zod-openapi';
-import { UserSchema } from '../schemas/user';
+import { CurrentUserSchema } from '../schemas/user';
 
-export const GetUserRoute = createRoute({
+export const GetCurrentUserRoute = createRoute({
   method: 'get',
-  path: '/api/user',
-  operationId: 'getUser',
+  path: '/api/currentUser',
+  operationId: 'getCurrentUser',
   tags: ['User'],
-  summary: '获取用户信息',
+  summary: '获取当前用户信息',
   responses: {
     200: {
-      description: '用户信息',
+      description: '当前用户信息',
       content: {
         'application/json': {
-          schema: UserSchema,
+          schema: CurrentUserSchema,
         },
       },
     },
   },
 });
 
-export const getUserHandler: RouteHandler<typeof GetUserRoute> = (c) => {
+export const getCurrentUserHandler: RouteHandler<typeof GetCurrentUserRoute> = (c) => {
   return c.json({
-    id: 1,
-    username: 'johndoe',
-    email: 'johndoe@example.com',
-    avatar: 'https://api.dicebear.com/9.x/avataaars/svg?seed=johndoe',
-    firstName: 'John',
-    lastName: 'Doe',
+    name: 'Serati Ma',
+    avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+    userid: '00000001',
+    email: 'antdesign@alipay.com',
+    signature: '海纳百川，有容乃大',
+    title: '交互专家',
+    group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+    notifyCount: 12,
+    unreadCount: 11,
+    country: 'China',
+    address: '西湖区工专路 77 号',
+    phone: '0752-268888888',
   });
 };
