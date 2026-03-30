@@ -1,7 +1,10 @@
 [build]
-  command = "npm install"
+  command = "corepack enable && pnpm install"
   functions = "netlify/functions"
   publish = "public"
+
+[build.environment]
+  NODE_VERSION = "22"
 
 [[redirects]]
   from = "/*"
