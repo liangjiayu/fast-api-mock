@@ -1,19 +1,22 @@
 {
   "name": "fast-api-mock",
+  "version": "1.0.0",
+  "description": "Mock API with Hono + OpenAPI",
   "scripts": {
-    "dev": "bun run --hot src/index.ts",
+    "dev": "tsx watch src/app.ts",
     "netlify:dev": "netlify dev"
   },
   "dependencies": {
-    "@hono/swagger-ui": "^0.6.1",
-    "@hono/zod-openapi": "^1.2.4",
-    "hono": "^4.12.9",
-    "zod": "^4.3.6"
+    "@hono/swagger-ui": "^0.5.0",
+    "@hono/zod-openapi": "^0.18.0",
+    "@hono/node-server": "^1.13.0",
+    "hono": "^4.7.0",
+    "zod": "^3.24.0"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "@types/swagger-ui-dist": "^3.30.6",
+    "@types/node": "^22.0.0",
+    "netlify-cli": "^18.0.0",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^5.7.0"
   }
 }
