@@ -1,7 +1,8 @@
 {
   "name": "fast-api-mock",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "netlify:dev": "netlify dev"
   },
   "dependencies": {
     "@hono/swagger-ui": "^0.6.1",
