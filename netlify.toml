@@ -1,5 +1,4 @@
 [build]
-  command = "corepack enable && pnpm install"
   functions = "netlify/functions"
 
 [build.environment]
