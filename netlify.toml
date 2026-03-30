@@ -1,5 +1,5 @@
 [build]
-  command = "corepack enable && pnpm install && mkdir -p public"
+  command = "corepack enable && pnpm install"
   functions = "netlify/functions"
   publish = "public"
 
