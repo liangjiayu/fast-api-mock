@@ -1,6 +1,6 @@
 # Fast API Mock
 
-基于 **Hono + Zod OpenAPI** 的 Mock API 服务，提供用户和商品等模拟数据接口，用于前端开发联调。部署在 Netlify Functions 上。
+基于 **Hono + Zod OpenAPI** 的 Mock API 服务，提供用户信息和任务管理等模拟数据接口，用于前端开发联调。部署在 Netlify Functions 上。
 
 ## 技术栈
 
@@ -27,10 +27,13 @@ pnpm dev
 
 ## API 接口
 
-| 方法 | 路径            | 说明                                            |
-| ---- | --------------- | ----------------------------------------------- |
-| GET  | `/api/user`     | 获取用户信息                                    |
-| GET  | `/api/products` | 获取商品列表（支持分页：`?page=1&pageSize=10`） |
+| 方法   | 路径              | 说明                                                        |
+| ------ | ----------------- | ----------------------------------------------------------- |
+| GET    | `/api/currentUser` | 获取当前用户信息                                            |
+| GET    | `/api/tasks`       | 获取任务列表（支持分页 `?page=1&pageSize=10`，筛选 `?name=&status=`） |
+| POST   | `/api/tasks`       | 创建任务                                                    |
+| PUT    | `/api/tasks/{id}`  | 编辑任务                                                    |
+| DELETE | `/api/tasks/{id}`  | 删除任务                                                    |
 
 ## 项目结构
 
@@ -39,11 +42,11 @@ src/
 ├── app.ts              # 应用入口，注册路由与文档
 ├── routes/             # 路由定义 + Handler
 │   ├── user.ts
-│   └── product.ts
+│   └── task.ts
 └── schemas/            # Zod Schema（带 OpenAPI 元数据）
-    ├── common.ts       # 通用 Schema（分页等）
+    ├── common.ts       # 通用 Schema（分页、成功响应等）
     ├── user.ts
-    └── product.ts
+    └── task.ts
 netlify/
 └── functions/api.ts    # Netlify Functions 入口
 ```
