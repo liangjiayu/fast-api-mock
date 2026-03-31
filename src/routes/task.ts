@@ -1,7 +1,12 @@
 import { createRoute, type RouteHandler } from '@hono/zod-openapi';
 import { z } from '@hono/zod-openapi';
-import { PaginationQuerySchema } from '../schemas/common';
-import { TaskListResponseSchema, TASK_STATUS } from '../schemas/task';
+import { PaginationQuerySchema, SuccessResponseSchema } from '../schemas/common';
+import {
+  TaskListResponseSchema,
+  CreateTaskSchema,
+  UpdateTaskSchema,
+  TASK_STATUS,
+} from '../schemas/task';
 
 const tasks = [
   {
@@ -300,4 +305,87 @@ export const getTasksHandler: RouteHandler<typeof GetTasksRoute> = (c) => {
   const data = filtered.slice(start, start + pageSize);
 
   return c.json({ data, total, page, pageSize });
+};
+
+// 创建任务
+export const CreateTaskRoute = createRoute({
+  method: 'post',
+  path: '/api/tasks',
+  operationId: 'createTask',
+  tags: ['Task'],
+  summary: '创建任务',
+  request: {
+    body: {
+      content: {
+        'application/json': {
+          schema: CreateTaskSchema,
+        },
+      },
+    },
+  },
+  responses: {
+    200: {
+      description: '创建成功',
+      content: { 'application/json': { schema: SuccessResponseSchema } },
+    },
+  },
+});
+
+export const createTaskHandler: RouteHandler<typeof CreateTaskRoute> = (c) => {
+  return c.json({ success: true, message: '创建成功' });
+};
+
+// 编辑任务
+export const UpdateTaskRoute = createRoute({
+  method: 'put',
+  path: '/api/tasks/{id}',
+  operationId: 'updateTask',
+  tags: ['Task'],
+  summary: '编辑任务',
+  request: {
+    params: z.object({
+      id: z.string().openapi({ description: '任务ID', example: '1' }),
+    }),
+    body: {
+      content: {
+        'application/json': {
+          schema: UpdateTaskSchema,
+        },
+      },
+    },
+  },
+  responses: {
+    200: {
+      description: '更新成功',
+      content: { 'application/json': { schema: SuccessResponseSchema } },
+    },
+  },
+});
+
+export const updateTaskHandler: RouteHandler<typeof UpdateTaskRoute> = (c) => {
+  return c.json({ success: true, message: '更新成功' });
+};
+
+// 删除任务
+export const DeleteTaskRoute = createRoute({
+  method: 'delete',
+  path: '/api/tasks/{id}',
+  operationId: 'deleteTask',
+  tags: ['Task'],
+  summary: '删除任务',
+  request: {
+    params: z.object({
+      id: z.string().openapi({ description: '任务ID', example: '1' }),
+    }),
+  },
+  responses: {
+    200: {
+      description: '删除成功',
+      content: { 'application/json': { schema: SuccessResponseSchema } },
+    },
+  },
+});
+
+export const deleteTaskHandler: RouteHandler<typeof DeleteTaskRoute> = (c) => {
+  return c.json({ success: true, message: '删除成功' });
 };

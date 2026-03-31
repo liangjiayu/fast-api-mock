@@ -21,3 +21,16 @@ export const TaskSchema = z
 
 export const TaskListResponseSchema =
   createPaginatedResponse(TaskSchema).openapi('TaskListResponse');
+
+export const CreateTaskSchema = z
+  .object({
+    name: z.string().openapi({ description: '任务名称', example: '新建任务' }),
+    status: z.enum(TASK_STATUS).openapi({ description: '任务状态', example: 'todo' }),
+    priority: z.enum(TASK_PRIORITY).openapi({ description: '优先级', example: 'medium' }),
+    assignee: z.string().openapi({ description: '负责人', example: '张三' }),
+    description: z.string().openapi({ description: '任务描述', example: '任务描述内容' }),
+    deadline: z.string().openapi({ description: '截止时间', example: '2025-07-01' }),
+  })
+  .openapi('CreateTask');
+
+export const UpdateTaskSchema = CreateTaskSchema.partial().openapi('UpdateTask');

@@ -5,6 +5,13 @@ export const PaginationQuerySchema = z.object({
   pageSize: z.string().optional().default('10').openapi({ description: '每页数量', example: '10' }),
 });
 
+export const SuccessResponseSchema = z
+  .object({
+    success: z.boolean().openapi({ description: '是否成功', example: true }),
+    message: z.string().openapi({ description: '提示信息', example: '操作成功' }),
+  })
+  .openapi('SuccessResponse');
+
 export function createPaginatedResponse<T extends z.ZodTypeAny>(itemSchema: T) {
   return z.object({
     data: z.array(itemSchema).openapi({ description: '数据列表' }),

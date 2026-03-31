@@ -1,7 +1,16 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { swaggerUI } from '@hono/swagger-ui';
 import { GetCurrentUserRoute, getCurrentUserHandler } from './routes/user';
-import { GetTasksRoute, getTasksHandler } from './routes/task';
+import {
+  GetTasksRoute,
+  getTasksHandler,
+  CreateTaskRoute,
+  createTaskHandler,
+  UpdateTaskRoute,
+  updateTaskHandler,
+  DeleteTaskRoute,
+  deleteTaskHandler,
+} from './routes/task';
 import { serve } from '@hono/node-server';
 
 const app = new OpenAPIHono();
@@ -9,6 +18,9 @@ const app = new OpenAPIHono();
 // 注册路由
 app.openapi(GetCurrentUserRoute, getCurrentUserHandler);
 app.openapi(GetTasksRoute, getTasksHandler);
+app.openapi(CreateTaskRoute, createTaskHandler);
+app.openapi(UpdateTaskRoute, updateTaskHandler);
+app.openapi(DeleteTaskRoute, deleteTaskHandler);
 
 // OpenAPI 文档
 app.doc('/doc', {
