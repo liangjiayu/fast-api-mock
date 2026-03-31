@@ -24,6 +24,7 @@ Mock API 服务，使用 Hono + Zod OpenAPI 构建，部署在 Netlify Functions
 - `netlify.toml` — 所有请求 `/*` 重定向到 `/.netlify/functions/api`。
 
 **添加新 API 的模式：**
+
 1. 在 `src/schemas/` 中定义 Zod schema（带 `.openapi()` 元数据）
 2. 在 `src/routes/` 中用 `createRoute()` 定义路由并导出 handler
 3. 在 `src/app.ts` 中用 `app.openapi()` 注册路由

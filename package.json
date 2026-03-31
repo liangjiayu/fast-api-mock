@@ -5,18 +5,21 @@
   "description": "Mock API with Hono + OpenAPI",
   "scripts": {
     "dev": "tsx watch src/app.ts",
-    "netlify:dev": "netlify dev"
+    "netlify:dev": "netlify dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@hono/node-server": "^1.13.0",
     "@hono/swagger-ui": "^0.5.0",
     "@hono/zod-openapi": "^0.18.0",
-    "@hono/node-server": "^1.13.0",
     "hono": "^4.7.0",
     "zod": "^3.24.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "netlify-cli": "^18.0.0",
+    "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "typescript": "^5.7.0"
   }
