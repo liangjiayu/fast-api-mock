@@ -28,7 +28,7 @@ app.get('/', (c) => c.json({ message: 'Fast API Mock - 访问 /ui 查看 API 文
 
 // 本地开发启动
 if (process.env.NODE_ENV !== 'production') {
-  const port = 3000;
+  const port = 8700;
   console.log(`Server running at http://localhost:${port}`);
   console.log(`Swagger UI: http://localhost:${port}/ui`);
   serve({ fetch: app.fetch, port });

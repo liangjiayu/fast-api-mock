@@ -8,7 +8,7 @@ Mock API 服务，使用 Hono + Zod OpenAPI 构建，部署在 Netlify Functions
 
 ## Commands
 
-- `pnpm dev` — 本地开发服务器 (localhost:3000)，使用 tsx watch 热重载
+- `pnpm dev` — 本地开发服务器 (localhost:8700)，使用 tsx watch 热重载
 - `pnpm netlify:dev` — 通过 Netlify CLI 启动本地开发
 
 ## Architecture

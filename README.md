@@ -15,15 +15,15 @@
 # 安装依赖
 pnpm install
 
-# 本地开发 (localhost:3000)
+# 本地开发 (localhost:8700)
 pnpm dev
 ```
 
 启动后访问：
 
-- API 根路由：http://localhost:3000/
-- Swagger UI：http://localhost:3000/ui
-- OpenAPI JSON：http://localhost:3000/doc
+- API 根路由：http://localhost:8700/
+- Swagger UI：http://localhost:8700/ui
+- OpenAPI JSON：http://localhost:8700/doc
 
 ## API 接口
 
