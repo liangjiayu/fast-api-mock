@@ -28,7 +28,7 @@ app.doc('/doc', {
   info: {
     title: 'Fast API Mock',
     version: '1.0.0',
-    description: 'Mock API 服务，提供用户和商品数据',
+    description: 'Mock API 服务',
   },
 });
 
