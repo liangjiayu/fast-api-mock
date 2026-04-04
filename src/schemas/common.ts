@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 export const PaginationQuerySchema = z.object({
-  page: z.string().optional().default('1').openapi({ description: '页码', example: '1' }),
-  pageSize: z.string().optional().default('10').openapi({ description: '每页数量', example: '10' }),
+  page: z.coerce.number().optional().default(1).openapi({ description: '页码', example: 1 }),
+  pageSize: z.coerce.number().optional().default(10).openapi({ description: '每页数量', example: 10 }),
 });
 
 export const SuccessResponseSchema = z

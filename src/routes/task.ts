@@ -288,9 +288,7 @@ export const GetTasksRoute = createRoute({
 });
 
 export const getTasksHandler: RouteHandler<typeof GetTasksRoute> = (c) => {
-  const { page: pageStr, pageSize: pageSizeStr, name, status } = c.req.valid('query');
-  const page = Number(pageStr);
-  const pageSize = Number(pageSizeStr);
+  const { page, pageSize, name, status } = c.req.valid('query');
 
   let filtered = tasks;
   if (name) {
@@ -344,7 +342,7 @@ export const UpdateTaskRoute = createRoute({
   summary: '编辑任务',
   request: {
     params: z.object({
-      id: z.string().openapi({ description: '任务ID', example: '1' }),
+      id: z.coerce.number().openapi({ description: '任务ID', example: 1 }),
     }),
     body: {
       content: {
@@ -375,7 +373,7 @@ export const DeleteTaskRoute = createRoute({
   summary: '删除任务',
   request: {
     params: z.object({
-      id: z.string().openapi({ description: '任务ID', example: '1' }),
+      id: z.coerce.number().openapi({ description: '任务ID', example: 1 }),
     }),
   },
   responses: {
