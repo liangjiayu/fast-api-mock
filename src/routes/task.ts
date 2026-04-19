@@ -6,6 +6,7 @@ import {
   CreateTaskSchema,
   UpdateTaskSchema,
   TASK_STATUS,
+  TASK_PRIORITY,
 } from '../schemas/task';
 
 const tasks = [
@@ -264,6 +265,10 @@ const tasks = [
 const TaskQuerySchema = PaginationQuerySchema.extend({
   name: z.string().optional().openapi({ description: '按任务名称搜索', example: '设计' }),
   status: z.enum(TASK_STATUS).optional().openapi({ description: '按状态筛选', example: 'todo' }),
+  priority: z
+    .enum(TASK_PRIORITY)
+    .optional()
+    .openapi({ description: '按优先级筛选', example: 'high' }),
 });
 
 export const GetTasksRoute = createRoute({
@@ -288,7 +293,7 @@ export const GetTasksRoute = createRoute({
 });
 
 export const getTasksHandler: RouteHandler<typeof GetTasksRoute> = (c) => {
-  const { page, pageSize, name, status } = c.req.valid('query');
+  const { page, pageSize, name, status, priority } = c.req.valid('query');
 
   let filtered = tasks;
   if (name) {
@@ -296,6 +301,9 @@ export const getTasksHandler: RouteHandler<typeof GetTasksRoute> = (c) => {
   }
   if (status) {
     filtered = filtered.filter((t) => t.status === status);
+  }
+  if (priority) {
+    filtered = filtered.filter((t) => t.priority === priority);
   }
 
   const total = filtered.length;
